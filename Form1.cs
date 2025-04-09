@@ -79,6 +79,7 @@ namespace massive_sheet_splitter
 
             try
             {
+                btn_split.Enabled = false;
                 List<ExcelSheetData> data = excelHelper.read_excel(tb_file_loc.Text);
                 int max_total_rows = excelHelper.GetSheetWithMostRows(data).RowCount;
                 int max_rows = (split_by_rows) ? split_num : (max_total_rows / split_num) + 1;
@@ -104,10 +105,12 @@ namespace massive_sheet_splitter
 
                 progressBar1.Value = 100;
                 MessageBox.Show("Completed successfully!");
+                btn_split.Enabled = true;
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Failed to split.");
+                btn_split.Enabled = true;
             }
         }
     }
